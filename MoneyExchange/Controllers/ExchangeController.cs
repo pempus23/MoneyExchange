@@ -20,8 +20,8 @@ namespace MoneyExchange.Controllers
             db = context;
             if (!db.Exchange.Any())
             {
-                db.Exchange.Add(new Exchange { FromAmount = 12, ToAmount = 2, FromCurrency = 2, ToCurrency = 2, Date = DateTime.Now });
-                db.SaveChanges();
+                //db.Exchange.Add(new Exchange { FromAmount = 12, ToAmount = 2, FromCurrency = 2, ToCurrency = 2, Date = DateTime.Now });
+                //db.SaveChanges();
             }
         }
 
