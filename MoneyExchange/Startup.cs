@@ -1,17 +1,9 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using MoneyExchange.DAL;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace MoneyExchange
 {
@@ -29,6 +21,7 @@ namespace MoneyExchange
         {
             string con = "Server=(localdb)\\mssqllocaldb;Database=MoneyExchange;Trusted_Connection=True;";
             // устанавливаем контекст данных
+            services.AddCors();
             services.AddDbContext<ExchangeContext>(options => options.UseSqlServer(con));
           
             services.AddControllers();
@@ -39,12 +32,18 @@ namespace MoneyExchange
         {
             app.UseDeveloperExceptionPage();
 
+            app.UseCors(builder => builder.AllowAnyOrigin());
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
+
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers(); // подключаем маршрутизацию на контроллеры
             });
+
+
         }
     }
 }

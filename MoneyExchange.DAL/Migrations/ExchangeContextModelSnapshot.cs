@@ -32,14 +32,14 @@ namespace MoneyExchange.DAL.Migrations
                     b.Property<decimal>("FromAmount")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<decimal>("FromCurrency")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<int>("FromCurrency")
+                        .HasColumnType("int");
 
                     b.Property<decimal>("ToAmount")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<decimal>("ToCurrency")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<int>("ToCurrency")
+                        .HasColumnType("int");
 
                     b.HasKey("id");
 

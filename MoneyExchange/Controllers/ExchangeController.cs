@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MoneyExchange.DAL;
 using MoneyExchange.Models;
@@ -14,13 +13,17 @@ namespace MoneyExchange.Controllers
     [ApiController]
     public class ExchangeController : ControllerBase
     {
-        ExchangeContext db;
+        private readonly ExchangeContext db;
         public ExchangeController(ExchangeContext context)
         {
             db = context;
             if (!db.Exchange.Any())
             {
-                db.Exchange.Add(new Exchange { FromAmount = 12, ToAmount = 2, FromCurrency = 2, ToCurrency = 2, Date = DateTime.Now });
+                db.Exchange.AddRange(
+                    new Exchange { FromAmount = 12, ToAmount = 2, FromCurrency = Currency.EUR, ToCurrency = Currency.USD, Date = DateTime.Now },
+                    new Exchange { FromAmount = 10, ToAmount = 20, FromCurrency = Currency.EUR, ToCurrency = Currency.CHF, Date = DateTime.Now },
+                    new Exchange { FromAmount = 1, ToAmount = 14, FromCurrency = Currency.GBP, ToCurrency = Currency.EUR, Date = DateTime.Now }
+                    );
                 db.SaveChanges();
             }
         }
@@ -29,6 +32,15 @@ namespace MoneyExchange.Controllers
         public async Task<ActionResult<IEnumerable<Exchange>>> Get()
         {
             return await db.Exchange.ToListAsync();
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Exchange>> Get(int id)
+        {
+            Exchange exchange = await db.Exchange.FirstOrDefaultAsync(x => x.id == id);
+            if (exchange == null)
+                return NotFound();
+            return new ObjectResult(exchange);
         }
     }
 }
