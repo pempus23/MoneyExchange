@@ -7,11 +7,18 @@ namespace MoneyExchange.Models
     {
         [Key]
         public int id { get; set; }
-        public decimal FromCurrency { get; set; }
+        public Currency FromCurrency { get; set; }
         public decimal FromAmount { get; set; }
-        public decimal ToCurrency { get; set; }
+        public Currency ToCurrency { get; set; }
         public decimal ToAmount { get; set; }
         public DateTime Date { get; set; }
 
+    }
+    public enum Currency
+    {
+        USD,
+        EUR,
+        GBP,
+        CHF
     }
 }

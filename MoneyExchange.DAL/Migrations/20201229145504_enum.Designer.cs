@@ -10,8 +10,8 @@ using MoneyExchange.DAL;
 namespace MoneyExchange.DAL.Migrations
 {
     [DbContext(typeof(ExchangeContext))]
-    [Migration("20201223124146_test")]
-    partial class test
+    [Migration("20201229145504_enum")]
+    partial class @enum
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -34,14 +34,14 @@ namespace MoneyExchange.DAL.Migrations
                     b.Property<decimal>("FromAmount")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<decimal>("FromCurrency")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<int>("FromCurrency")
+                        .HasColumnType("int");
 
                     b.Property<decimal>("ToAmount")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<decimal>("ToCurrency")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<int>("ToCurrency")
+                        .HasColumnType("int");
 
                     b.HasKey("id");
 

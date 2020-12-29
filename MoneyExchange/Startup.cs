@@ -21,6 +21,7 @@ namespace MoneyExchange
         {
             string con = "Server=(localdb)\\mssqllocaldb;Database=MoneyExchange;Trusted_Connection=True;";
             // устанавливаем контекст данных
+            services.AddCors();
             services.AddDbContext<ExchangeContext>(options => options.UseSqlServer(con));
           
             services.AddControllers();
@@ -31,9 +32,9 @@ namespace MoneyExchange
         {
             app.UseDeveloperExceptionPage();
 
-            //connect to view
-            //app.UseDefaultFiles(); 
-            //app.UseStaticFiles();
+            app.UseCors(builder => builder.AllowAnyOrigin());
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
 
             app.UseRouting();
 

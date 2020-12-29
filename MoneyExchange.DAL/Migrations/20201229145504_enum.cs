@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MoneyExchange.DAL.Migrations
 {
-    public partial class test : Migration
+    public partial class @enum : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,9 +13,9 @@ namespace MoneyExchange.DAL.Migrations
                 {
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FromCurrency = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    FromCurrency = table.Column<int>(type: "int", nullable: false),
                     FromAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    ToCurrency = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    ToCurrency = table.Column<int>(type: "int", nullable: false),
                     ToAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
