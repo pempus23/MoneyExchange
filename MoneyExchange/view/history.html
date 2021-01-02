@@ -55,49 +55,11 @@
 
 				
 			<table class="table">
-        		<thead class="thead-light"><tr><th>Id</th><th>from</th><th>date</th></tr></thead>
+        		<thead class="thead-light"><tr><th>From currency</th><th>Amount</th><th>To currency</th><th>Amount</th><th>Date</th></tr></thead>
         		<tbody>
         		</tbody>
     		</table>
 
-				<!-- <div class="row section-content wel-sec">
-					<div class="col-1-3">
-						<h4>Design</h4>
-
-						<p>text text text text text text text text text text text text text text text </p>
-
-					</div>
-					<div class="col-1-3">
-						<h4>Text</h4>
-
-						<p>text text text text text text text text text text text text text text text text text text </p>
-
-						<ul class="ul-list">
-							<li><span class="fa icon-ok"></span> text text text </li>
-							<li><span class="fa icon-ok"></span> text text text </li>
-							<li><span class="fa icon-ok"></span> text text text </li>
-							<li><span class="fa icon-ok"></span> text text text </li>
-						</ul>
-					</div>
-					<div class="col-1-3">
-						<h4>Contact</h4>
-
-						<p>text text text text text text text text text text text text  </p>
-
-						<ul class="social-links clearfix">
-							<li><a href="#" title="Twitter"><i class="icon-twitter-sign"></i></a></li>
-							<li><a href="#" title="Facebook"><i class="icon-facebook-sign"></i></a></li>
-							<li><a href="#" title="Google Plus"><i class="icon-google-plus-sign"></i></a></li>
-							<li><a href="#" title="Flickr"><i class="icon-flickr"></i></a></li>
-							<li><a href="#" title="Dribble"><i class="icon-dribbble"></i></a></li>
-							<li><a href="#" title="Instagram"><i class="icon-instagram"></i></a></li>
-							<li><a href="#" title="Pinterest"><i class="icon-pinterest-sign"></i></a></li>
-							<li><a href="#" title="Tumblr"><i class="icon-tumblr-sign"></i></a></li>
-							<li><a href="#" title="LinkedIn"><i class="icon-linkedin-sign"></i></a></li>
-						</ul>
-					</div>
-				</div>
-			</div> -->
 		</section>
 
 
@@ -134,16 +96,57 @@
 				const tr = document.createElement("tr");
 				tr.setAttribute("data-rowid", user.id);
 	
-				const idTd = document.createElement("td");
-				idTd.append(user.id);
-				tr.append(idTd);
+				// const idTd = document.createElement("td");
+				// idTd.append(user.id);
+				// tr.append(idTd);
 	
-				const nameTd = document.createElement("td");
-				nameTd.append(user.fromCurrency);
-				tr.append(nameTd);
+				const currency1 = document.createElement("td");
+				switch(user.fromCurrency)
+				{
+					case 0:
+						currency1.append('USD');
+						break;
+					case 1:
+						currency1.append('EUR');
+						break;
+					case 2:
+						currency1.append('GBP');
+						break;
+					case 3:
+						currency1.append('CHF');
+						break;
+				}
+				tr.append(currency1);
+
+				const fromAmount = document.createElement("td");
+				fromAmount.append(user.fromAmount);
+				tr.append(fromAmount);
 	
+				const currency2 = document.createElement("td");
+				switch(user.toCurrency)
+				{
+					case 0:
+						currency2.append('USD');
+						break;
+					case 1:
+						currency2.append('EUR');
+						break;
+					case 2:
+						currency2.append('GBP');
+						break;
+					case 3:
+						currency2.append('CHF');
+						break;
+				}
+				tr.append(currency2);
+
+				const toAmount = document.createElement("td");
+				toAmount.append(user.toAmount);
+				tr.append(toAmount);
+
 				const ageTd = document.createElement("td");
-				ageTd.append(new Date(user.date).toLocaleDateString());
+				var options = {hour: '2-digit', minute: '2-digit', second:'2-digit', year: 'numeric', month: 'long', day: 'numeric'};
+				ageTd.append(new Date(user.date).toLocaleDateString("en-US", options));
 				tr.append(ageTd);
 
 				return tr;

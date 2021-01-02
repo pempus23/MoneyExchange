@@ -50,7 +50,7 @@ namespace MoneyExchange.Controllers
             {
                 return BadRequest();
             }
-
+            exchange.Date = DateTime.Now;
             db.Exchange.Add(exchange);
             await db.SaveChangesAsync();
             return Ok(exchange);

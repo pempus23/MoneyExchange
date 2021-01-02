@@ -165,9 +165,9 @@
 				body: JSON.stringify
 				({
 					FromCurrency : parseInt(fromCurrency),
-					FromAmount : parseInt(fromAmount),
+					FromAmount : parseFloat(fromAmount),
 					ToCurrency : parseInt(toCurrency),
-					ToAmount : parseInt(toAmount)
+					ToAmount : parseFloat(toAmount)
 				})
 			});
 		}
