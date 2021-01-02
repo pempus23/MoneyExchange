@@ -1,0 +1,487 @@
+
+
+/* 1. General */
+
+@import url(https://fonts.googleapis.com/css?family=Tinos&subset=latin,cyrillic);
+
+html, body { height: 100%; }
+
+body {
+	font-family: 'Tinos';
+	margin: 0 auto;
+	background-color: #fff;
+	color: #333;
+}
+
+img { max-width: 100%; }
+
+a {
+	outline: 0!important;
+	color: #5b9bbc;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+a img {
+	border: 0;
+	border-radius: 10px;
+}
+ul {
+	list-style: none;
+}
+
+/* 1.1 Layout add-ons */
+
+.bullet { padding-left: 5px; padding-right: 5px; }
+
+.cool {
+	font-size: 0.6em;
+	line-height: 1.3em;
+	vertical-align: top;
+}
+
+.line {
+	display: block;
+	width: 290px;
+	height: 3px;
+	padding: 0!important;
+	background: #ccc;
+}
+
+.separator {
+	width: 30px;
+	height: 3px;
+	background: #ccc;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.text-right {
+	text-align: right;
+}
+
+.centered {
+	margin-left: auto;
+	margin-right: auto;
+	float: none;
+}
+
+.left { float: left!important; }
+.right { float: right!important; }
+
+/* 1.2 Section styling */
+
+.section,
+.section-alt {
+	margin: 0 auto;
+	padding: 75px 0;
+	position: relative;
+}
+
+.section { background-color: #fff; }
+.section-alt { background-color: #EAF887; }
+
+.section-title {
+	margin: 0 0 15px 0;
+	padding: 0;
+	font-size: 2.250em;
+	font-weight: 300;
+	color: #0f1025;
+	text-transform: uppercase;
+	display: block;
+	text-align: center;
+	letter-spacing: 0.1em;
+}
+
+.section-title .cool {
+	line-height: 1.7em;
+}
+
+.section-content { margin-top: 60px; }
+
+.section h3,
+.section-alt h3 {
+	font-size: 1.5em;
+	color: #222;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+}
+
+.section h4,
+.section-alt h4 {
+	font-size: 1em;
+	color: #222;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+}
+
+.column > :first-child { margin-top: 0; }
+
+/* 1.3 Form elements */
+
+input[type="text"], textarea {
+	font-family: inherit;
+	font-size: 1em;
+	font-style: italic;
+	width: 96%;
+	padding: 0 2%;
+	height: 40px;
+	line-height: 40px;
+	font-size: 1em;
+	background-color: #ccc;
+	border: 0;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	resize: none;
+}
+
+textarea {
+	height: auto;
+	line-height: 1.4em;
+	padding: 2%;
+}
+
+label {
+	display: block;
+	text-transform: uppercase;
+	letter-spacing: 0.15em;
+	margin-bottom: 10px;
+}
+
+label.error {
+	margin: 10px 0 0 0;
+	font-size: 0.750em;
+	color: #e76270;
+}
+
+input.error, textarea.error {
+	/*-webkit-box-shadow: inset 0px 0px 4px 3px rgba(231, 98, 112, 0.5);
+	box-shadow: inset 0px 0px 4px 3px rgba(231, 98, 112, 0.5);*/
+	background-color: #ffe0d5!important;
+}
+
+.button {
+	display: inline-block;
+	color: #ffffff!important;
+	background-color: #5b9bbc!important;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	border: none;
+	text-transform: uppercase;
+	text-decoration: none;
+	letter-spacing: 0.15em;
+	cursor: pointer;
+}
+
+.button:hover {
+	color: #ffffff!important;
+	background-color: #4081a3!important;
+}
+
+.button-small {
+	padding: 5px 10px;
+	font-size: 0.875em;
+}
+
+.button-medium {
+	padding: 10px 15px;
+	font-size: 1em;
+}
+
+.button-large {
+	padding: 15px 20px;
+	font-size: 1.125em;
+}
+
+/* 2. Intro */
+
+#intro {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	background-color: #0d2c5a;
+	color: #fff;
+}
+
+#intro .line { background-color: #5b9bbc; }
+#intro .bullet { color: #5b9bbc; }
+#intro a { color: #5b9bbc; }
+
+/* 2.1 Navigation */
+
+#nav {
+	width: 100%;
+	height: 60px;
+	text-align: center;
+	position: absolute;
+	margin: 0 auto;
+}
+
+#nav-sticky-wrapper.is-sticky #nav {
+	background-color: #3BBBB3;
+}
+
+#nav ul {
+	margin: 0 auto;
+	padding: 0;
+	list-style: none;
+	display: inline-block;
+	*display: inline;
+}
+
+#nav ul li {
+	padding: 0 8px;
+	line-height: 60px;
+	display: inline-block;
+	float: left;
+	text-transform: uppercase;
+}
+
+#nav ul li a {
+	display: block;
+	font-size: 0.938em;
+	letter-spacing: 0.1em;
+	color: #fff;
+	text-decoration: none;
+}
+
+#nav ul li a:hover, #nav ul li.current a { color: #EAF887; }
+
+/* 2.2 Info box */
+
+.info {
+	width: 100%;
+	height: 100%;
+	margin-bottom: -60px;
+	text-align: center;
+}
+
+.info .container {
+	position: relative;
+	top: 200px;
+}
+
+.info .container h1 {
+	margin: 0;
+	padding: 0;
+	font-size: 3.750em;
+	font-weight: 900;
+	letter-spacing: 0.1em;
+	line-height: 1em;
+	text-transform: uppercase;
+}
+
+.info .container h4 {
+	margin: 0;
+	padding: 0;
+	font-size: 1.875em;
+	font-weight: 300;
+	letter-spacing: 0.1em;
+	line-height: 1em;
+	text-transform: uppercase;
+}
+
+/* 3. Profile */
+
+.wel-sec {
+	background-color: #F5F5F5;
+}
+
+#profile .line { background-color: #4081a3; }
+#profile .bullet { color: #4081a3; }
+#profile a { color: #3BBBB3; }
+
+.social-links {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+.social-links li {
+	float: left;
+	margin: 0 8px 8px 0;
+}
+.social-links li a { display: inline-block; text-decoration: none; }
+.social-links li i { font-size: 1.5em; }
+
+/* 4. Skills */
+
+#skills .line { background-color: #f08b65; }
+
+.skill { text-align: center; }
+.skill-pie {
+	width: 100%;
+	margin: 0 auto;
+	font-size: 1.875em;
+	font-weight: 300;
+}
+.easyPieChart canvas { margin: 0 auto; }
+.skill h3 { margin-bottom: 0; padding-bottom: 0; }
+
+/* 5. Experience */
+
+#experience .line { background-color: #e76270; }
+#experience .bullet { color: #e76270; }
+#experience a { color: #e76270; }
+
+.job h3 {
+	margin: 0 0 10px 0;
+	text-align: center;
+}
+
+.job-attributions {
+	display: block;
+	text-align: center;
+	text-transform: uppercase;
+	letter-spacing: 0.15em;
+}
+
+.job-period { text-align: right; }
+
+.job-project { text-align: center; }
+
+/* 6. Education */
+
+#education .line { background-color: #f24759; }
+#education .bullet { color: #f24759; }
+#education a { color: #f24759; }
+
+.school h3 {
+	margin: 0 0 10px 0;
+	text-align: center;
+}
+
+.school-meta {
+	display: block;
+	text-align: center;
+	text-transform: uppercase;
+	letter-spacing: 0.15em;
+}
+.ul-list span {
+	color: rgb(22, 187, 22);
+}
+
+/* 7. Portfolio */
+
+#portfolio .line { background-color: #f08b65; }
+#portfolio .bullet { color: #f08b65; }
+#portfolio a { color: #f08b65; }
+
+.project {
+	opacity: 0;
+    display: none;
+	text-align: center;
+}
+
+.filters {
+	display: block;
+	margin: 0 0 15px 0;
+	padding: 0;
+	list-style-type: none;
+	text-align: center;
+}
+
+.filters li {
+	color: #000000;
+	display: inline-block;
+	cursor: pointer;
+	text-transform: uppercase;
+	letter-spacing: 0.15em;
+}
+
+.filters li:hover, .filters li.active { color: #f08b65; }
+
+.filters li:before {
+	content: "\2022";
+	padding: 0 10px;
+	color: #f08b65;
+}
+
+.filters li:first-child:before {
+	content: "";
+	padding: 0;
+}
+
+/* 8. Contact */
+
+#contact {
+	background-color: #377AAF;
+	min-height: 80%;
+	color: #fff;
+}
+
+#contact h2, #contact h3, #contact h4 { color: #fff; }
+
+#contact .line { background-color: #5b9bbc; }
+#contact .bullet { color: #5b9bbc; }
+#contact a { color: #5b9bbc; }
+
+#contact input[type="text"], #contact textarea { background-color: #fff; }
+
+/* 9. Footer */
+
+footer {
+  background-color: #2A5F89;
+  padding: 50px;
+  text-align: center;
+  color: #fff;
+}
+footer a {
+	color: gold;
+}
+
+/* A. Clearfix */
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    font-size: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.clearfix { display: inline-block; }
+
+/* A.1 Hides from IE5/Mac \*/
+* html .clearfix { height: 1px; }
+
+.clearfix  { display: block; }
+/* End hide from IE5/Mac */
+
+
+/* B. Media Queries */
+@media screen and (max-width: 768px) {
+	.skill,
+	.project { width: 33.33333333333333%; }
+	.job-project { width: 50%; }
+}
+
+@media screen and (max-width: 640px) {
+	.section-title { font-size: 2em; line-height: 1em; }
+	.info .container h1 { font-size: 2.300em; }
+	.info .container h4 { font-size: 1.500em; }
+	#nav li { font-size: 0.875em; }
+	#nav li a span { display: none; }
+	.line { width: 200px; }
+	.job-company,
+	.job-period { text-align: center; }
+	.skill,
+	.job-project,
+	.project { float: left; width: 50%; }
+	.text-right { text-align: left; }
+}
+
+@media screen and (max-width: 480px) {
+	.section-content { margin-top: 45px; }
+	#nav ul li { padding: 0 5px; }
+}

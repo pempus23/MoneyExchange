@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+
+<html>
+	
+<head>
+
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+		<title>Money</title>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/css/bootstrap.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="assets/css/normalize.css" media="screen">
+		<link rel="stylesheet" href="assets/css/grid.css" media="screen">
+		<link rel="stylesheet" href="assets/css/style.css" media="screen">
+		<link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="assets/js/magnific/jquery.magnific-popup.css" media="screen">
+		<link rel="stylesheet" href="assets/js/easy-pie/jquery.easy-pie-chart.css" media="screen">
+
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.css" />
+	</head>
+
+	<body>
+
+		<section id="intro" class="fx-backstretch">
+			<div class="info">
+				<div class="container">
+					<div class="row">
+						<div class="col-full text-warning"><h1>Money Exchange<span class="cool">$</span></h1></div>
+					</div>
+					<div class="row">
+						<div class="col-full">
+							<h4>
+								<a href="history.html" class="text-warning">History exchange</a>
+							</h4>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	
+		<section id="converter" class="section">
+			<div class="container">
+				<div class="row">
+					<div class="col-full">
+						<h2 class="section-title">Converter</h2>
+						<div class="centered line"></div>
+					</div>
+				</div>
+
+				<form name="convertForm">
+					<div class="row">
+						<input type="hidden" name="id" value="0" />
+						<div class="col-3">
+							<label for="fromAmount"><small>Amount</small></label>
+							<input class="form-control" name="fromAmount" />
+						</div>
+						<div class="col-2" style="margin-top: 4%;">
+							<select class="form-control" name="fromCurrency" id="id_select2_example" style="width: 100px;">
+								<option value="0" selected="selected" data-img_src="https://cdn.countryflags.com/thumbs/united-states-of-america/flag-400.png">USD</option>
+								<option value="1" data-img_src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Flag_of_Europe.svg/255px-Flag_of_Europe.svg.png">EUR</option>
+								<option value="2" data-img_src="https://flaglane.com/download/british-flag/british-flag-graphic.png">GBP</option>
+								<option value="3" data-img_src="https://images-na.ssl-images-amazon.com/images/I/51kF3mV56DL._AC_SX679_.jpg">CHF</option>
+							  </select>
+						</div>
+						<div class="col-1" style="margin-top: 3%; margin-right: 2%;">
+							<img src="https://icons.iconarchive.com/icons/custom-icon-design/flatastic-11/256/Arrows-icon.png" onclick="al()">
+						</div>
+						<div class="col-3">
+							<label for="toAmount"><small>Converted to</small></label>
+							<input class="form-control" name="toAmount" />
+						</div>
+						<div class="col-2" style="margin-top: 4%;">
+							<select class="form-control" name="toCurrency" id="id_select3_example" style="width: 100px;">
+								<option value="0" selected="selected" data-img_src="https://cdn.countryflags.com/thumbs/united-states-of-america/flag-400.png">USD</option>
+								<option value="1" data-img_src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Flag_of_Europe.svg/255px-Flag_of_Europe.svg.png">EUR</option>
+								<option value="2" data-img_src="https://flaglane.com/download/british-flag/british-flag-graphic.png">GBP</option>
+								<option value="3" data-img_src="https://images-na.ssl-images-amazon.com/images/I/51kF3mV56DL._AC_SX679_.jpg">CHF</option>
+							  </select>
+						</div>		
+					</div>
+					<div class="panel-body  text-right" style="margin-top: 3%; margin-right: 10%;">
+						<button type="submit" id="submit" class="btn btn-primary">Exchange</button>
+						<li style="margin-left: 5%; margin-top: -5%; color: rgb(4, 235, 4);" class="text-left" ><a style="color: black;">1 USD = </a>00.12312 <a style="color: black;">EUR</a></li>
+					</div>
+					
+				</form>
+		</section>
+
+
+
+		<footer>
+			<div class="container">
+			ASP.NET Core Web API
+			</div>
+		</footer>
+
+		
+		<script>
+	
+		</script>
+
+		<script src="assets/js/jquery-1.10.2.min.js"></script>
+		<script src="assets/js/jquery-migrate-1.2.1.min.js"></script>
+		<script src="assets/js/jquery.mixitup.min.js"></script>
+		<script src="assets/js/magnific/jquery.magnific-popup.min.js"></script>
+		<script src="assets/js/easy-pie/jquery.easy-pie-chart.js"></script>
+		<script src="assets/js/jquery.sticky.js"></script>
+		<script src="assets/js/jquery.backstretch.min.js"></script>
+		<script src="assets/js/jquery.form.min.js" type="text/javascript"></script>
+		<script src="assets/js/jquery.validate.min.js" type="text/javascript"></script>
+		<script src="assets/js/jquery.validation.settings.js" type="text/javascript"></script>
+		<script src="assets/js/respond.min.js"></script>
+		<script src="assets/js/jquery.scrollto.min.js"></script>
+		<script src="assets/js/jquery.nav.js"></script>
+		<script src="assets/js/custom.js" type="text/javascript"></script>
+
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.js"></script>
+		<script type="text/javascript">
+		function al(){
+			alert('revers');
+		}
+			function custom_template(obj){
+					var data = $(obj.element).data();
+					var text = $(obj.element).text();
+					if(data && data['img_src']){
+						img_src = data['img_src'];
+						template = $("<div class=\"row\" style=\"margin-top: 8px;\"><img src=\"" + img_src + "\" style=\"width:40%;height:18px;\"/><p style=\"font-weight: 100;margin-top: -6px;margin-left: 10px; font-size:10pt;text-align:center;\">" + text + "</p></div>");
+						return template;
+					}
+				}
+			var options = {
+				'templateSelection': custom_template,
+				'templateResult': custom_template,
+			}
+			$('#id_select2_example').select2(options);
+			$('#id_select3_example').select2(options);
+			$('.select2-container--default .select2-selection--single').css({'height': '35px'});
+
+			//send form
+		document.forms["convertForm"].addEventListener("submit", e => {
+            e.preventDefault();
+            const form = document.forms["convertForm"];
+            const fromAmount = form.elements["fromAmount"].value;
+            const fromCurrency = form.elements["fromCurrency"].value;
+			const toAmount = form.elements["toAmount"].value;
+			const toCurrency = form.elements["toCurrency"].value;
+			if (fromAmount && toAmount != 0)
+			{
+				CreateExchange(fromAmount, fromCurrency, toAmount, toCurrency);
+			}
+
+        });
+ 
+		async function CreateExchange(fromAmount, fromCurrency, toAmount, toCurrency) 
+		{	
+			const response = await fetch("http://localhost:44347/api/Exchange", 
+			{
+				method: "POST",
+				headers: { "Accept": "application/json", "Content-Type": "application/json" },
+				body: JSON.stringify
+				({
+					FromCurrency : parseInt(fromCurrency),
+					FromAmount : parseInt(fromAmount),
+					ToCurrency : parseInt(toCurrency),
+					ToAmount : parseInt(toAmount)
+				})
+			});
+		}
+		</script>
+	</body>
+
+</html>
