@@ -42,5 +42,18 @@ namespace MoneyExchange.Controllers
                 return NotFound();
             return new ObjectResult(exchange);
         }
+
+        [HttpPost]
+        public async Task<ActionResult<Exchange>> Post(Exchange exchange)
+        {
+            if (exchange == null)
+            {
+                return BadRequest();
+            }
+            exchange.Date = DateTime.Now;
+            db.Exchange.Add(exchange);
+            await db.SaveChangesAsync();
+            return Ok(exchange);
+        }
     }
 }
