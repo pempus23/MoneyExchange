@@ -2,9 +2,12 @@
 using Microsoft.EntityFrameworkCore;
 using MoneyExchange.DAL;
 using MoneyExchange.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace MoneyExchange.Controllers
@@ -26,6 +29,18 @@ namespace MoneyExchange.Controllers
                     );
                 db.SaveChanges();
             }
+
+
+            string url = "https://api.exchangeratesapi.io/latest?base=USD";
+            HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
+            HttpWebResponse httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+            string response;
+            using (StreamReader streamReader = new StreamReader(httpWebResponse.GetResponseStream()))
+            {
+                response = streamReader.ReadToEnd();
+            }
+            CurrencyResponse Response = JsonConvert.DeserializeObject<CurrencyResponse>(response);
+          
         }
 
         [HttpGet]
