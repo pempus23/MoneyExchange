@@ -30,20 +30,6 @@ namespace MoneyExchange.Controllers
                     new Exchange { FromAmount = 12.22M, ToAmount = 142.22M, FromCurrency = Currency.GBP, ToCurrency = Currency.EUR, Date = DateTime.Now }
                     );
             db.SaveChanges();
-
-
-
-
-            //string url = "https://api.exchangeratesapi.io/latest?base=USD";
-            //HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
-            //HttpWebResponse httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-            //string response;
-            //using (StreamReader streamReader = new StreamReader(httpWebResponse.GetResponseStream()))
-            //{
-            //    response = streamReader.ReadToEnd();
-            //}
-            //CurrencyResponse Response = JsonConvert.DeserializeObject<CurrencyResponse>(response);
-
         }
 
         [HttpGet]

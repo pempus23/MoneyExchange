@@ -55,7 +55,7 @@
 						<input type="hidden" name="id" value="0" />
 						<div class="col-3">
 							<label for="fromAmount"><small>Amount</small></label>
-							<input class="form-control" name="fromAmount" />
+							<input class="form-control" id="fromInput" value='0' name="fromAmount" />
 						</div>
 						<div class="col-2" style="margin-top: 4%;">
 							<select class="form-control" name="fromCurrency" id="id_select2_example" style="width: 100px;">
@@ -70,7 +70,7 @@
 						</div>
 						<div class="col-3">
 							<label for="toAmount"><small>Converted to</small></label>
-							<input class="form-control" name="toAmount" />
+							<input class="form-control" id="toInput" value='0' name="toAmount" />
 						</div>
 						<div class="col-2" style="margin-top: 4%;">
 							<select class="form-control" name="toCurrency" id="id_select3_example" style="width: 100px;">
@@ -83,9 +83,8 @@
 					</div>
 					<div class="panel-body  text-right" style="margin-top: 3%; margin-right: 10%;">
 						<button type="submit" id="submit" class="btn btn-primary">Exchange</button>
-						<li style="margin-left: 5%; margin-top: -5%; color: rgb(4, 235, 4);" class="text-left" ><a style="color: black;">1 USD = </a>00.12312 <a style="color: black;">EUR</a></li>
-					</div>
-					
+						<li style="margin-left: 5%; margin-top: -5%; color: rgb(4, 235, 4);" class="text-left" ><a style="color: black;">1 </a><a style="color: black;" id="textChange">USD</a><a style="color: black;"> =</a><a id="devide"> 00.00000 </a><a style="color: black;" id="textTo">EUR</a></li>
+					</div>		
 				</form>
 		</section>
 
@@ -149,7 +148,7 @@
             const fromCurrency = form.elements["fromCurrency"].value;
 			const toAmount = form.elements["toAmount"].value;
 			const toCurrency = form.elements["toCurrency"].value;
-			if (fromAmount && toAmount != 0)
+			if (fromAmount || toAmount != 0)
 			{
 				CreateExchange(fromAmount, fromCurrency, toAmount, toCurrency);
 			}
@@ -170,6 +169,54 @@
 					ToAmount : parseFloat(toAmount)
 				})
 			});
+			if(response.ok === true)
+			{
+				const answer = await response.json();
+				console.log(answer);
+				switch(answer.fromCurrency)
+				{
+					case 0:
+						document.getElementById("textChange").innerText = " USD";
+						break;
+					case 1:
+						document.getElementById("textChange").innerText = " EUR";
+						break;
+					case 2:
+						document.getElementById("textChange").innerText = " GBP";
+						break;
+					case 3:
+						document.getElementById("textChange").innerText = " CHF";
+						break;
+				}
+				switch(answer.toCurrency)
+				{
+					case 0:
+						document.getElementById("textTo").innerText = " USD";
+						break;
+					case 1:
+						document.getElementById("textTo").innerText = " EUR";
+						break;
+					case 2:
+						document.getElementById("textTo").innerText = " GBP";
+						break;
+					case 3:
+						document.getElementById("textTo").innerText = " CHF";
+						break;
+				}
+				// document.getElementById("textChange").innerText = answer.fromCurrency;
+				// document.getElementById("textTo").innerText = answer.toCurrency;
+
+				document.getElementById("devide").innerText = answer.fromAmount/answer.toAmount;
+
+				if(document.getElementById("fromInput").value == 0)
+				{
+					document.getElementById("fromInput").value = answer.fromAmount;
+				}
+				else
+				{
+					document.getElementById("toInput").value = answer.toAmount;
+				}
+			}
 		}
 		</script>
 	</body>

@@ -17,7 +17,7 @@ namespace MoneyExchange.DAL.Repository
             _db = new ExchangeContext();
             _table = _db.Set<T>();
         }
-        public int Add(T entity)
+        public virtual int Add(T entity)
         {
             _table.AddAsync(entity);
             return SaveChanges();
