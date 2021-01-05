@@ -1,12 +1,11 @@
-﻿using System;
+﻿using MoneyExchange.Models.Base;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace MoneyExchange.Models
 {
-    public class Exchange
+    public class Exchange : EntityBase
     {
-        [Key]
-        public int id { get; set; }
         public Currency FromCurrency { get; set; }
         public decimal FromAmount { get; set; }
         public Currency ToCurrency { get; set; }

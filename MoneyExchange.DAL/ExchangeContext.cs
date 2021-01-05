@@ -12,5 +12,11 @@ namespace MoneyExchange.DAL
         {
             Database.EnsureCreated();
         }
+
+        public ExchangeContext()
+        {
+        }
+        protected override void OnConfiguring(DbContextOptionsBuilder options)
+    => options.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=MoneyExchange;Trusted_Connection=True;");
     }
 }
