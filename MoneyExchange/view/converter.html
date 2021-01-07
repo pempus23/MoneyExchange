@@ -83,7 +83,7 @@
 					</div>
 					<div class="panel-body  text-right" style="margin-top: 3%; margin-right: 10%;">
 						<button type="submit" id="submit" class="btn btn-primary">Exchange</button>
-						<li style="margin-left: 5%; margin-top: -5%; color: rgb(4, 235, 4);" class="text-left" ><a style="color: black;">1 </a><a style="color: black;" id="textChange">USD</a><a style="color: black;"> =</a><a id="devide"> 00.00000 </a><a style="color: black;" id="textTo">EUR</a></li>
+						<li style="margin-left: 5%; margin-top: -5%; color: rgb(4, 235, 4);" class="text-left" ><a style="color: black;">1 </a><a style="color: black;" id="textChange">USD</a><a style="color: black;"> = </a><a id="devide"> 00.00000 </a><a style="color: black;" id="textTo">EUR</a></li>
 					</div>		
 				</form>
 		</section>
@@ -157,66 +157,82 @@
  
 		async function CreateExchange(fromAmount, fromCurrency, toAmount, toCurrency) 
 		{	
-			const response = await fetch("http://localhost:44347/api/Exchange", 
+			if(fromAmount > 0 && toAmount > 0)
 			{
-				method: "POST",
-				headers: { "Accept": "application/json", "Content-Type": "application/json" },
-				body: JSON.stringify
-				({
-					FromCurrency : parseInt(fromCurrency),
-					FromAmount : parseFloat(fromAmount),
-					ToCurrency : parseInt(toCurrency),
-					ToAmount : parseFloat(toAmount)
-				})
-			});
-			if(response.ok === true)
+				alert("One currency should be empty or zero");
+			}
+			else
 			{
-				const answer = await response.json();
-				console.log(answer);
-				switch(answer.fromCurrency)
+				if(fromAmount == "" || fromAmount == "0")
 				{
-					case 0:
-						document.getElementById("textChange").innerText = " USD";
-						break;
-					case 1:
-						document.getElementById("textChange").innerText = " EUR";
-						break;
-					case 2:
-						document.getElementById("textChange").innerText = " GBP";
-						break;
-					case 3:
-						document.getElementById("textChange").innerText = " CHF";
-						break;
-				}
-				switch(answer.toCurrency)
-				{
-					case 0:
-						document.getElementById("textTo").innerText = " USD";
-						break;
-					case 1:
-						document.getElementById("textTo").innerText = " EUR";
-						break;
-					case 2:
-						document.getElementById("textTo").innerText = " GBP";
-						break;
-					case 3:
-						document.getElementById("textTo").innerText = " CHF";
-						break;
-				}
-				// document.getElementById("textChange").innerText = answer.fromCurrency;
-				// document.getElementById("textTo").innerText = answer.toCurrency;
-
-				document.getElementById("devide").innerText = answer.fromAmount/answer.toAmount;
-
-				if(document.getElementById("fromInput").value == 0)
-				{
-					document.getElementById("fromInput").value = answer.fromAmount;
+					fromAmount = 0;
 				}
 				else
 				{
-					document.getElementById("toInput").value = answer.toAmount;
+					toAmount = 0;
+				}
+					const response = await fetch("http://localhost:44347/api/Exchange", 
+					{
+						method: "POST",
+						headers: { "Accept": "application/json", "Content-Type": "application/json" },
+						body: JSON.stringify
+						({
+							FromCurrency : parseInt(fromCurrency),
+							FromAmount : parseFloat(fromAmount),
+							ToCurrency : parseInt(toCurrency),
+							ToAmount : parseFloat(toAmount)
+						})
+					});
+				if(response.ok === true)
+				{
+					const answer = await response.json();
+					console.log(answer);
+					switch(answer.fromCurrency)
+					{
+						case 0:
+							document.getElementById("textChange").innerText = " USD";
+							break;
+						case 1:
+							document.getElementById("textChange").innerText = " EUR";
+							break;
+						case 2:
+							document.getElementById("textChange").innerText = " GBP";
+							break;
+						case 3:
+							document.getElementById("textChange").innerText = " CHF";
+							break;
+					}
+					switch(answer.toCurrency)
+					{
+						case 0:
+							document.getElementById("textTo").innerText = " USD";
+							break;
+						case 1:
+							document.getElementById("textTo").innerText = " EUR";
+							break;
+						case 2:
+							document.getElementById("textTo").innerText = " GBP";
+							break;
+						case 3:
+							document.getElementById("textTo").innerText = " CHF";
+							break;
+					}
+
+
+
+					if(document.getElementById("fromInput").value == 0)
+					{
+						document.getElementById("devide").innerText = answer.fromAmount/answer.toAmount;
+						document.getElementById("fromInput").value = answer.fromAmount;
+					}
+					else
+					{
+						document.getElementById("devide").innerText = answer.toAmount/answer.fromAmount;
+						document.getElementById("toInput").value = answer.toAmount;
+					}
 				}
 			}
+			
 		}
 		</script>
 	</body>
