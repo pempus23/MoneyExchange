@@ -52,7 +52,7 @@
 
 				<form name="convertForm">
 					<div class="row">
-						<input type="hidden" name="id" value="0" />
+						<!-- <input type="hidden" name="id" value="0" /> -->
 						<div class="col-3">
 							<label for="fromAmount"><small>Amount</small></label>
 							<input class="form-control" id="fromInput" value='0' name="fromAmount" />
@@ -66,7 +66,7 @@
 							  </select>
 						</div>
 						<div class="col-1" style="margin-top: 3%; margin-right: 2%;">
-							<img src="https://icons.iconarchive.com/icons/custom-icon-design/flatastic-11/256/Arrows-icon.png" onclick="al()">
+							<img src="https://icons.iconarchive.com/icons/custom-icon-design/flatastic-11/256/Arrows-icon.png" onclick="revers()">
 						</div>
 						<div class="col-3">
 							<label for="toAmount"><small>Converted to</small></label>
@@ -120,8 +120,16 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.js"></script>
 		<script type="text/javascript">
-		function al(){
-			alert('revers');
+
+		function revers()
+		{
+			let amountFirst = document.getElementById("fromInput").value;
+			let currencyFirst = document.getElementById("id_select2_example").value;
+			document.getElementById("fromInput").value = document.getElementById("toInput").value;
+			document.getElementById("id_select2_example").value = document.getElementById("id_select3_example").value;
+			document.getElementById("toInput").value = amountFirst;
+			document.getElementById("id_select3_example").value = currencyFirst;
+			location.reload();
 		}
 			function custom_template(obj){
 					var data = $(obj.element).data();
@@ -157,9 +165,9 @@
  
 		async function CreateExchange(fromAmount, fromCurrency, toAmount, toCurrency) 
 		{	
-			if(fromAmount > 0 && toAmount > 0)
+			if((fromAmount > 0 && toAmount > 0)||(fromCurrency == toCurrency))
 			{
-				alert("One currency should be empty or zero");
+				alert("Currencies must be different and one should be empty or zero");
 			}
 			else
 			{
@@ -217,8 +225,6 @@
 							document.getElementById("textTo").innerText = " CHF";
 							break;
 					}
-
-
 
 					if(document.getElementById("fromInput").value == 0)
 					{

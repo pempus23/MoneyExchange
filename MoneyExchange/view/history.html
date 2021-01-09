@@ -19,6 +19,10 @@
 		<link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
 		<link rel="stylesheet" href="assets/js/magnific/jquery.magnific-popup.css" media="screen">
 		<link rel="stylesheet" href="assets/js/easy-pie/jquery.easy-pie-chart.css" media="screen">
+
+		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.23/datatables.min.css"/>
+		<script src="https://code.jquery.com/jquery-1.11.3.js"></script>	
+		<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.23/datatables.min.js"></script>
 	</head>
 
 	<body>
@@ -54,8 +58,8 @@
 			
 
 				
-			<table class="table">
-        		<thead class="thead-light"><tr><th>From currency</th><th>Amount</th><th>To currency</th><th>Amount</th><th>Date</th></tr></thead>
+			<table class="table" id="myTable">
+        		<thead class="thead-light"><tr><th>Id</th><th>From currency</th><th>Amount</th><th>To currency</th><th>Amount</th><th>Date</th></tr></thead>
         		<tbody>
         		</tbody>
     		</table>
@@ -88,6 +92,8 @@
 					cars.forEach(user => {
 						rows.append(row(user));
 					});
+					
+			$('#myTable').DataTable();
 				}
 			};
 	
@@ -96,9 +102,9 @@
 				const tr = document.createElement("tr");
 				tr.setAttribute("data-rowid", user.id);
 	
-				// const idTd = document.createElement("td");
-				// idTd.append(user.id);
-				// tr.append(idTd);
+				 const idTd = document.createElement("td");
+				 idTd.append(user.id);
+				 tr.append(idTd);
 	
 				const currency1 = document.createElement("td");
 				switch(user.fromCurrency)
@@ -152,14 +158,15 @@
 				return tr;
 			}
 	
-			GetUsers();
-
+			GetUsers();		
+		
 		</script>
 
-		<script src="assets/js/jquery-1.10.2.min.js"></script>
-		<script src="assets/js/jquery-migrate-1.2.1.min.js"></script>
 
-		<script src="assets/js/jquery.mixitup.min.js"></script>
+		<!-- <script src="assets/js/jquery-1.10.2.min.js"></script>
+		<script src="assets/js/jquery-migrate-1.2.1.min.js"></script> -->
+
+		<script src="assets/js/jquery.mixitup.min.js"></script> 
 
 		<script src="assets/js/magnific/jquery.magnific-popup.min.js"></script>
 
@@ -167,18 +174,19 @@
 
 		<script src="assets/js/jquery.sticky.js"></script>
 
-		<script src="assets/js/jquery.backstretch.min.js"></script>
+		<script src="assets/js/jquery.backstretch.min.js"></script> 
 
 		<script src="assets/js/jquery.form.min.js" type="text/javascript"></script>
 		<script src="assets/js/jquery.validate.min.js" type="text/javascript"></script>
-		<script src="assets/js/jquery.validation.settings.js" type="text/javascript"></script>
+		<script src="assets/js/jquery.validation.settings.js" type="text/javascript"></script> 
 
 		<script src="assets/js/respond.min.js"></script>
 
 		<script src="assets/js/jquery.scrollto.min.js"></script>
-		<script src="assets/js/jquery.nav.js"></script>
+		<script src="assets/js/jquery.nav.js"></script> 
 
 		<script src="assets/js/custom.js" type="text/javascript"></script>
+
 
 	</body>
 
