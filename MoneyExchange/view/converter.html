@@ -52,10 +52,10 @@
 
 				<form name="convertForm">
 					<div class="row">
-						<input type="hidden" name="id" value="0" />
+						<!-- <input type="hidden" name="id" value="0" /> -->
 						<div class="col-3">
 							<label for="fromAmount"><small>Amount</small></label>
-							<input class="form-control" name="fromAmount" />
+							<input class="form-control" id="fromInput" value='0' name="fromAmount" />
 						</div>
 						<div class="col-2" style="margin-top: 4%;">
 							<select class="form-control" name="fromCurrency" id="id_select2_example" style="width: 100px;">
@@ -66,11 +66,11 @@
 							  </select>
 						</div>
 						<div class="col-1" style="margin-top: 3%; margin-right: 2%;">
-							<img src="https://icons.iconarchive.com/icons/custom-icon-design/flatastic-11/256/Arrows-icon.png" onclick="al()">
+							<img src="https://icons.iconarchive.com/icons/custom-icon-design/flatastic-11/256/Arrows-icon.png" onclick="revers()">
 						</div>
 						<div class="col-3">
 							<label for="toAmount"><small>Converted to</small></label>
-							<input class="form-control" name="toAmount" />
+							<input class="form-control" id="toInput" value='0' name="toAmount" />
 						</div>
 						<div class="col-2" style="margin-top: 4%;">
 							<select class="form-control" name="toCurrency" id="id_select3_example" style="width: 100px;">
@@ -83,9 +83,8 @@
 					</div>
 					<div class="panel-body  text-right" style="margin-top: 3%; margin-right: 10%;">
 						<button type="submit" id="submit" class="btn btn-primary">Exchange</button>
-						<li style="margin-left: 5%; margin-top: -5%; color: rgb(4, 235, 4);" class="text-left" ><a style="color: black;">1 USD = </a>00.12312 <a style="color: black;">EUR</a></li>
-					</div>
-					
+						<li style="margin-left: 5%; margin-top: -5%; color: rgb(4, 235, 4);" class="text-left" ><a style="color: black;">1 </a><a style="color: black;" id="textChange">USD</a><a style="color: black;"> = </a><a id="devide"> 00.00000 </a><a style="color: black;" id="textTo">EUR</a></li>
+					</div>		
 				</form>
 		</section>
 
@@ -121,8 +120,16 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.js"></script>
 		<script type="text/javascript">
-		function al(){
-			alert('revers');
+
+		function revers()
+		{
+			let amountFirst = document.getElementById("fromInput").value;
+			let currencyFirst = document.getElementById("id_select2_example").value;
+			document.getElementById("fromInput").value = document.getElementById("toInput").value;
+			document.getElementById("id_select2_example").value = document.getElementById("id_select3_example").value;
+			document.getElementById("toInput").value = amountFirst;
+			document.getElementById("id_select3_example").value = currencyFirst;
+			location.reload();
 		}
 			function custom_template(obj){
 					var data = $(obj.element).data();
@@ -149,7 +156,7 @@
             const fromCurrency = form.elements["fromCurrency"].value;
 			const toAmount = form.elements["toAmount"].value;
 			const toCurrency = form.elements["toCurrency"].value;
-			if (fromAmount && toAmount != 0)
+			if (fromAmount || toAmount != 0)
 			{
 				CreateExchange(fromAmount, fromCurrency, toAmount, toCurrency);
 			}
@@ -158,18 +165,80 @@
  
 		async function CreateExchange(fromAmount, fromCurrency, toAmount, toCurrency) 
 		{	
-			const response = await fetch("http://localhost:44347/api/Exchange", 
+			if((fromAmount > 0 && toAmount > 0)||(fromCurrency == toCurrency)||(fromAmount == 0 && toAmount == 0))
 			{
-				method: "POST",
-				headers: { "Accept": "application/json", "Content-Type": "application/json" },
-				body: JSON.stringify
-				({
-					FromCurrency : parseInt(fromCurrency),
-					FromAmount : parseFloat(fromAmount),
-					ToCurrency : parseInt(toCurrency),
-					ToAmount : parseFloat(toAmount)
-				})
-			});
+				alert("Currencies must be different and one should be empty or zero");
+			}
+			else
+			{
+				if(fromAmount == "" || fromAmount == "0")
+				{
+					fromAmount = 0;
+				}
+				else
+				{
+					toAmount = 0;
+				}
+					const response = await fetch("http://localhost:44347/api/Exchange", 
+					{
+						method: "POST",
+						headers: { "Accept": "application/json", "Content-Type": "application/json" },
+						body: JSON.stringify
+						({
+							FromCurrency : parseInt(fromCurrency),
+							FromAmount : parseFloat(fromAmount),
+							ToCurrency : parseInt(toCurrency),
+							ToAmount : parseFloat(toAmount)
+						})
+					});
+				if(response.ok === true)
+				{
+					const answer = await response.json();
+					console.log(answer);
+					switch(answer.fromCurrency)
+					{
+						case 0:
+							document.getElementById("textChange").innerText = " USD";
+							break;
+						case 1:
+							document.getElementById("textChange").innerText = " EUR";
+							break;
+						case 2:
+							document.getElementById("textChange").innerText = " GBP";
+							break;
+						case 3:
+							document.getElementById("textChange").innerText = " CHF";
+							break;
+					}
+					switch(answer.toCurrency)
+					{
+						case 0:
+							document.getElementById("textTo").innerText = " USD";
+							break;
+						case 1:
+							document.getElementById("textTo").innerText = " EUR";
+							break;
+						case 2:
+							document.getElementById("textTo").innerText = " GBP";
+							break;
+						case 3:
+							document.getElementById("textTo").innerText = " CHF";
+							break;
+					}
+
+					if(document.getElementById("fromInput").value == 0)
+					{
+						document.getElementById("devide").innerText = answer.fromAmount/answer.toAmount;
+						document.getElementById("fromInput").value = answer.fromAmount;
+					}
+					else
+					{
+						document.getElementById("devide").innerText = answer.toAmount/answer.fromAmount;
+						document.getElementById("toInput").value = answer.toAmount;
+					}
+				}
+			}
+			
 		}
 		</script>
 	</body>

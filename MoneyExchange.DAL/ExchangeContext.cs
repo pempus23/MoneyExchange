@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MoneyExchange.Models;
-using System;
 
 namespace MoneyExchange.DAL
 {
@@ -12,5 +11,11 @@ namespace MoneyExchange.DAL
         {
             Database.EnsureCreated();
         }
+
+        public ExchangeContext()
+        {
+        }
+        protected override void OnConfiguring(DbContextOptionsBuilder options)
+            => options.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=MoneyExchange;Trusted_Connection=True;");
     }
 }

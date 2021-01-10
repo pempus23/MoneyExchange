@@ -21,7 +21,7 @@ namespace MoneyExchange.DAL.Migrations
 
             modelBuilder.Entity("MoneyExchange.Models.Exchange", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
@@ -41,7 +41,7 @@ namespace MoneyExchange.DAL.Migrations
                     b.Property<int>("ToCurrency")
                         .HasColumnType("int");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
                     b.ToTable("Exchange");
                 });

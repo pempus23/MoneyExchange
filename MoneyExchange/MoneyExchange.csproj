@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Exchange.BLL\MoneyExchange.BLL.csproj" />
     <ProjectReference Include="..\MoneyExchange.DAL\MoneyExchange.DAL.csproj" />
     <ProjectReference Include="..\MoneyExchange.Models\MoneyExchange.Models.csproj" />
   </ItemGroup>

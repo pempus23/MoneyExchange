@@ -10,8 +10,8 @@ using MoneyExchange.DAL;
 namespace MoneyExchange.DAL.Migrations
 {
     [DbContext(typeof(ExchangeContext))]
-    [Migration("20201229145504_enum")]
-    partial class @enum
+    [Migration("20210104175747_base")]
+    partial class @base
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,7 +23,7 @@ namespace MoneyExchange.DAL.Migrations
 
             modelBuilder.Entity("MoneyExchange.Models.Exchange", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
@@ -43,7 +43,7 @@ namespace MoneyExchange.DAL.Migrations
                     b.Property<int>("ToCurrency")
                         .HasColumnType("int");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
                     b.ToTable("Exchange");
                 });
