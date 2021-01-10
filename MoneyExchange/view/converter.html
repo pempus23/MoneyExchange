@@ -165,7 +165,7 @@
  
 		async function CreateExchange(fromAmount, fromCurrency, toAmount, toCurrency) 
 		{	
-			if((fromAmount > 0 && toAmount > 0)||(fromCurrency == toCurrency))
+			if((fromAmount > 0 && toAmount > 0)||(fromCurrency == toCurrency)||(fromAmount == 0 && toAmount == 0))
 			{
 				alert("Currencies must be different and one should be empty or zero");
 			}
