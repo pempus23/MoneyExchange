@@ -1,14 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+using MoneyExchange.BLL.ExchangeService;
 using MoneyExchange.DAL;
 using MoneyExchange.DAL.Repository.Templates;
 using MoneyExchange.Models;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
 
 namespace MoneyExchange.Controllers
@@ -19,8 +16,10 @@ namespace MoneyExchange.Controllers
     {
         private readonly ExchangeContext db;
         private readonly IRepo<Exchange> _repository;
-        public ExchangeController(IRepo<Exchange> repository, ExchangeContext context)
+        private readonly IExchangeService _service;
+        public ExchangeController(IRepo<Exchange> repository, ExchangeContext context, IExchangeService service)
         {
+            _service = service;
             db = context;
             _repository = repository;
             if (!db.Exchange.Any())
@@ -36,7 +35,6 @@ namespace MoneyExchange.Controllers
         public async Task<ActionResult<IEnumerable<Exchange>>> Get()
         {
             return _repository.GetAll();
-            //return await db.Exchange.ToListAsync();
         }
 
         [HttpPost]
@@ -47,7 +45,7 @@ namespace MoneyExchange.Controllers
                 return BadRequest();
             }
             exchange.Date = DateTime.Now;
-            _repository.Add(exchange);
+            _service.ExchangeRate(exchange);
             return Ok(exchange);
         }
     }

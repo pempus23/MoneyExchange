@@ -1,6 +1,5 @@
 ﻿using MoneyExchange.Models.Base;
 using System;
-using System.ComponentModel.DataAnnotations;
 
 namespace MoneyExchange.Models
 {

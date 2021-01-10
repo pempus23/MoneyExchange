@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoneyExchange.Models", "Mon
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoneyExchange.DAL", "MoneyExchange.DAL\MoneyExchange.DAL.csproj", "{31CCC333-0BBA-45A5-B42F-D31950E85362}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exchange.BLL", "Exchange.BLL\Exchange.BLL.csproj", "{9EC73ED2-E458-4A25-B71F-8BC9D2E328BB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyExchange.BLL", "Exchange.BLL\MoneyExchange.BLL.csproj", "{9EC73ED2-E458-4A25-B71F-8BC9D2E328BB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

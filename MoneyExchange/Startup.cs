@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using MoneyExchange.BLL.ExchangeService;
 using MoneyExchange.DAL;
 using MoneyExchange.DAL.Repository;
 using MoneyExchange.DAL.Repository.Templates;
@@ -23,6 +24,7 @@ namespace MoneyExchange
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IRepo<Exchange>, ExchangeRepo>();
+            services.AddScoped<IExchangeService, ExchangeService>();
             services.AddCors();
             services.AddControllers();
 
