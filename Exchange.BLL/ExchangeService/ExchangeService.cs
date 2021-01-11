@@ -15,13 +15,14 @@ namespace MoneyExchange.BLL.ExchangeService
         }
         public int ExchangeRate(Exchange entity)
         {
+            CurrencyResponse Response = new CurrencyResponse();
             if (entity.FromAmount != 0)
             {
                 switch (entity.FromCurrency)
                 {
                     case Currency.USD:
                         url += "USD";
-                        CurrencyResponse Response = _reqestService.Request(url);
+                        Response = _reqestService.Request(url);
                         switch (entity.ToCurrency)
                         {
                             case Currency.EUR:
@@ -37,49 +38,49 @@ namespace MoneyExchange.BLL.ExchangeService
                         break;
                     case Currency.EUR:
                         url += "EUR";
-                        CurrencyResponse Response2 = _reqestService.Request(url);
+                        Response = _reqestService.Request(url);
                         switch (entity.ToCurrency)
                         {
                             case Currency.USD:
-                                entity.ToAmount = entity.FromAmount * Response2.rates.USD;
+                                entity.ToAmount = entity.FromAmount * Response.rates.USD;
                                 break;
                             case Currency.GBP:
-                                entity.ToAmount = entity.FromAmount * Response2.rates.GBP;
+                                entity.ToAmount = entity.FromAmount * Response.rates.GBP;
                                 break;
                             case Currency.CHF:
-                                entity.ToAmount = entity.FromAmount * Response2.rates.CHF;
+                                entity.ToAmount = entity.FromAmount * Response.rates.CHF;
                                 break;
                         }
                         break;
                     case Currency.GBP:
                         url += "GBP";
-                        CurrencyResponse Response3 = _reqestService.Request(url);
+                        Response = _reqestService.Request(url);
                         switch (entity.ToCurrency)
                         {
                             case Currency.EUR:
-                                entity.ToAmount = entity.FromAmount * Response3.rates.EUR;
+                                entity.ToAmount = entity.FromAmount * Response.rates.EUR;
                                 break;
                             case Currency.USD:
-                                entity.ToAmount = entity.FromAmount * Response3.rates.USD;
+                                entity.ToAmount = entity.FromAmount * Response.rates.USD;
                                 break;
                             case Currency.CHF:
-                                entity.ToAmount = entity.FromAmount * Response3.rates.CHF;
+                                entity.ToAmount = entity.FromAmount * Response.rates.CHF;
                                 break;
                         }
                         break;
                     case Currency.CHF:
                         url += "CHF";
-                        CurrencyResponse Response4 = _reqestService.Request(url);
+                        Response = _reqestService.Request(url);
                         switch (entity.ToCurrency)
                         {
                             case Currency.EUR:
-                                entity.ToAmount = entity.FromAmount * Response4.rates.EUR;
+                                entity.ToAmount = entity.FromAmount * Response.rates.EUR;
                                 break;
                             case Currency.GBP:
-                                entity.ToAmount = entity.FromAmount * Response4.rates.GBP;
+                                entity.ToAmount = entity.FromAmount * Response.rates.GBP;
                                 break;
                             case Currency.USD:
-                                entity.ToAmount = entity.FromAmount * Response4.rates.USD;
+                                entity.ToAmount = entity.FromAmount * Response.rates.USD;
                                 break;
                         }
                         break;
@@ -91,7 +92,7 @@ namespace MoneyExchange.BLL.ExchangeService
                 {
                     case Currency.USD:
                         url += "USD";
-                        CurrencyResponse Response = _reqestService.Request(url);
+                        Response = _reqestService.Request(url);
                         switch (entity.FromCurrency)
                         {
                             case Currency.EUR:
@@ -107,49 +108,49 @@ namespace MoneyExchange.BLL.ExchangeService
                         break;
                     case Currency.EUR:
                         url += "EUR";
-                        CurrencyResponse Response2 = _reqestService.Request(url);
+                        Response = _reqestService.Request(url);
                         switch (entity.FromCurrency)
                         {
                             case Currency.USD:
-                                entity.FromAmount = entity.ToAmount * Response2.rates.USD;
+                                entity.FromAmount = entity.ToAmount * Response.rates.USD;
                                 break;
                             case Currency.GBP:
-                                entity.FromAmount = entity.ToAmount * Response2.rates.GBP;
+                                entity.FromAmount = entity.ToAmount * Response.rates.GBP;
                                 break;
                             case Currency.CHF:
-                                entity.FromAmount = entity.ToAmount * Response2.rates.CHF;
+                                entity.FromAmount = entity.ToAmount * Response.rates.CHF;
                                 break;
                         }
                         break;
                     case Currency.GBP:
                         url += "GBP";
-                        CurrencyResponse Response3 = _reqestService.Request(url);
+                        Response = _reqestService.Request(url);
                         switch (entity.FromCurrency)
                         {
                             case Currency.EUR:
-                                entity.FromAmount = entity.ToAmount * Response3.rates.EUR;
+                                entity.FromAmount = entity.ToAmount * Response.rates.EUR;
                                 break;
                             case Currency.USD:
-                                entity.FromAmount = entity.ToAmount * Response3.rates.USD;
+                                entity.FromAmount = entity.ToAmount * Response.rates.USD;
                                 break;
                             case Currency.CHF:
-                                entity.FromAmount = entity.ToAmount * Response3.rates.CHF;
+                                entity.FromAmount = entity.ToAmount * Response.rates.CHF;
                                 break;
                         }
                         break;
                     case Currency.CHF:
                         url += "CHF";
-                        CurrencyResponse Response4 = _reqestService.Request(url);
+                        Response = _reqestService.Request(url);
                         switch (entity.FromCurrency)
                         {
                             case Currency.EUR:
-                                entity.FromAmount = entity.ToAmount * Response4.rates.EUR;
+                                entity.FromAmount = entity.ToAmount * Response.rates.EUR;
                                 break;
                             case Currency.GBP:
-                                entity.FromAmount = entity.ToAmount * Response4.rates.GBP;
+                                entity.FromAmount = entity.ToAmount * Response.rates.GBP;
                                 break;
                             case Currency.USD:
-                                entity.FromAmount = entity.ToAmount * Response4.rates.USD;
+                                entity.FromAmount = entity.ToAmount * Response.rates.USD;
                                 break;
                         }
                         break;
