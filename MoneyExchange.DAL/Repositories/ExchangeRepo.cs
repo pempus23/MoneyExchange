@@ -1,9 +1,6 @@
 ﻿using MoneyExchange.Models;
-using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Net;
 
 namespace MoneyExchange.DAL.Repository
 {

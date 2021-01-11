@@ -25,6 +25,7 @@ namespace MoneyExchange
         {
             services.AddScoped<IRepo<Exchange>, ExchangeRepo>();
             services.AddScoped<IExchangeService, ExchangeService>();
+            services.AddScoped<IHttpRequestService, HttpRequestService>();
             services.AddCors();
             services.AddControllers();
 

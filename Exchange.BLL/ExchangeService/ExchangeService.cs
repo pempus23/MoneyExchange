@@ -1,36 +1,27 @@
 ﻿using MoneyExchange.DAL.Repository.Templates;
 using MoneyExchange.Models;
-using Newtonsoft.Json;
-using System.IO;
-using System.Net;
 
 namespace MoneyExchange.BLL.ExchangeService
 {
     public class ExchangeService : IExchangeService
     {
+        private string url = "https://api.exchangeratesapi.io/latest?base=";
         private readonly IRepo<Exchange> _repository;
-        public ExchangeService(IRepo<Exchange> repository)
+        private IHttpRequestService _reqestService;
+        public ExchangeService(IRepo<Exchange> repository, IHttpRequestService requestService)
         {
             _repository = repository;
+            _reqestService = requestService;
         }
         public int ExchangeRate(Exchange entity)
         {
             if (entity.FromAmount != 0)
             {
-                string url = "https://api.exchangeratesapi.io/latest?base=";
-
                 switch (entity.FromCurrency)
                 {
                     case Currency.USD:
                         url += "USD";
-                        HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
-                        HttpWebResponse httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-                        string response;
-                        using (StreamReader streamReader = new StreamReader(httpWebResponse.GetResponseStream()))
-                        {
-                            response = streamReader.ReadToEnd();
-                        }
-                        CurrencyResponse Response = JsonConvert.DeserializeObject<CurrencyResponse>(response);
+                        CurrencyResponse Response = _reqestService.Request(url);
                         switch (entity.ToCurrency)
                         {
                             case Currency.EUR:
@@ -46,14 +37,7 @@ namespace MoneyExchange.BLL.ExchangeService
                         break;
                     case Currency.EUR:
                         url += "EUR";
-                        HttpWebRequest httpWebRequest2 = (HttpWebRequest)WebRequest.Create(url);
-                        HttpWebResponse httpWebResponse2 = (HttpWebResponse)httpWebRequest2.GetResponse();
-                        string response2;
-                        using (StreamReader streamReader = new StreamReader(httpWebResponse2.GetResponseStream()))
-                        {
-                            response2 = streamReader.ReadToEnd();
-                        }
-                        CurrencyResponse Response2 = JsonConvert.DeserializeObject<CurrencyResponse>(response2);
+                        CurrencyResponse Response2 = _reqestService.Request(url);
                         switch (entity.ToCurrency)
                         {
                             case Currency.USD:
@@ -69,14 +53,7 @@ namespace MoneyExchange.BLL.ExchangeService
                         break;
                     case Currency.GBP:
                         url += "GBP";
-                        HttpWebRequest httpWebRequest3 = (HttpWebRequest)WebRequest.Create(url);
-                        HttpWebResponse httpWebResponse3 = (HttpWebResponse)httpWebRequest3.GetResponse();
-                        string response3;
-                        using (StreamReader streamReader = new StreamReader(httpWebResponse3.GetResponseStream()))
-                        {
-                            response3 = streamReader.ReadToEnd();
-                        }
-                        CurrencyResponse Response3 = JsonConvert.DeserializeObject<CurrencyResponse>(response3);
+                        CurrencyResponse Response3 = _reqestService.Request(url);
                         switch (entity.ToCurrency)
                         {
                             case Currency.EUR:
@@ -92,14 +69,7 @@ namespace MoneyExchange.BLL.ExchangeService
                         break;
                     case Currency.CHF:
                         url += "CHF";
-                        HttpWebRequest httpWebRequest4 = (HttpWebRequest)WebRequest.Create(url);
-                        HttpWebResponse httpWebResponse4 = (HttpWebResponse)httpWebRequest4.GetResponse();
-                        string response4;
-                        using (StreamReader streamReader = new StreamReader(httpWebResponse4.GetResponseStream()))
-                        {
-                            response4 = streamReader.ReadToEnd();
-                        }
-                        CurrencyResponse Response4 = JsonConvert.DeserializeObject<CurrencyResponse>(response4);
+                        CurrencyResponse Response4 = _reqestService.Request(url);
                         switch (entity.ToCurrency)
                         {
                             case Currency.EUR:
@@ -117,20 +87,11 @@ namespace MoneyExchange.BLL.ExchangeService
             }
             else
             {
-                string url = "https://api.exchangeratesapi.io/latest?base=";
-
                 switch (entity.ToCurrency)
                 {
                     case Currency.USD:
                         url += "USD";
-                        HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
-                        HttpWebResponse httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-                        string response;
-                        using (StreamReader streamReader = new StreamReader(httpWebResponse.GetResponseStream()))
-                        {
-                            response = streamReader.ReadToEnd();
-                        }
-                        CurrencyResponse Response = JsonConvert.DeserializeObject<CurrencyResponse>(response);
+                        CurrencyResponse Response = _reqestService.Request(url);
                         switch (entity.FromCurrency)
                         {
                             case Currency.EUR:
@@ -146,14 +107,7 @@ namespace MoneyExchange.BLL.ExchangeService
                         break;
                     case Currency.EUR:
                         url += "EUR";
-                        HttpWebRequest httpWebRequest2 = (HttpWebRequest)WebRequest.Create(url);
-                        HttpWebResponse httpWebResponse2 = (HttpWebResponse)httpWebRequest2.GetResponse();
-                        string response2;
-                        using (StreamReader streamReader = new StreamReader(httpWebResponse2.GetResponseStream()))
-                        {
-                            response2 = streamReader.ReadToEnd();
-                        }
-                        CurrencyResponse Response2 = JsonConvert.DeserializeObject<CurrencyResponse>(response2);
+                        CurrencyResponse Response2 = _reqestService.Request(url);
                         switch (entity.FromCurrency)
                         {
                             case Currency.USD:
@@ -169,14 +123,7 @@ namespace MoneyExchange.BLL.ExchangeService
                         break;
                     case Currency.GBP:
                         url += "GBP";
-                        HttpWebRequest httpWebRequest3 = (HttpWebRequest)WebRequest.Create(url);
-                        HttpWebResponse httpWebResponse3 = (HttpWebResponse)httpWebRequest3.GetResponse();
-                        string response3;
-                        using (StreamReader streamReader = new StreamReader(httpWebResponse3.GetResponseStream()))
-                        {
-                            response3 = streamReader.ReadToEnd();
-                        }
-                        CurrencyResponse Response3 = JsonConvert.DeserializeObject<CurrencyResponse>(response3);
+                        CurrencyResponse Response3 = _reqestService.Request(url);
                         switch (entity.FromCurrency)
                         {
                             case Currency.EUR:
@@ -192,14 +139,7 @@ namespace MoneyExchange.BLL.ExchangeService
                         break;
                     case Currency.CHF:
                         url += "CHF";
-                        HttpWebRequest httpWebRequest4 = (HttpWebRequest)WebRequest.Create(url);
-                        HttpWebResponse httpWebResponse4 = (HttpWebResponse)httpWebRequest4.GetResponse();
-                        string response4;
-                        using (StreamReader streamReader = new StreamReader(httpWebResponse4.GetResponseStream()))
-                        {
-                            response4 = streamReader.ReadToEnd();
-                        }
-                        CurrencyResponse Response4 = JsonConvert.DeserializeObject<CurrencyResponse>(response4);
+                        CurrencyResponse Response4 = _reqestService.Request(url);
                         switch (entity.FromCurrency)
                         {
                             case Currency.EUR:
